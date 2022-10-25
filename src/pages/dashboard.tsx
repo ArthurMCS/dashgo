@@ -1,7 +1,7 @@
-import { Box, Flex, SimpleGrid, Text, theme } from '@chakra-ui/react'
 import React from 'react'
-import Header from './components/Header'
-import Sidebar from './components/Sidebar'
+import { Box, Flex, SimpleGrid, Text, theme } from '@chakra-ui/react'
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts';
 
@@ -68,7 +68,7 @@ export default function Dashboard() {
     <Flex direction="column" h="100vh">
         <Header />
 
-        <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
+        <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6" justify="center">
             <Sidebar />
 
             <SimpleGrid 
