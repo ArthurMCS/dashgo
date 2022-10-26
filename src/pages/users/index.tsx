@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Th, Thead, Tr, Tbody, Td, Text } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Th, Thead, Tr, Tbody, Td, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import Header from '../../components/Header'
@@ -6,6 +6,11 @@ import Paginations from '../../components/Pagination'
 import Sidebar from '../../components/Sidebar'
 
 export default function UserList() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true
+  })  
+
   return (
    <Box>
         <Header />
@@ -49,19 +54,13 @@ export default function UserList() {
                 >
                     <Thead>
                         <Tr>
-                            <Th
-                                px="6"
-                                color="gray.300"
-                                width="8"
-                            >
+                            <Th px={["4", "4", "6"]} color="gray.300" width="8" >
                                 <Checkbox colorScheme="pink" />
                             </Th>
                             <Th>
                                 Usuário
                             </Th>
-                            <Th>
-                                Data de cadastro
-                            </Th>
+                            {isWideVersion && (<Th>Data de cadastro</Th>)}
                             <Th width="8">
                             </Th>
                         </Tr>
@@ -71,7 +70,7 @@ export default function UserList() {
 
                     >
                         <Tr>
-                            <Td px="6">
+                            <Td px={["4", "4", "6"]}>
                                 <Checkbox colorScheme="pink" />
                             </Td>
 
@@ -80,20 +79,20 @@ export default function UserList() {
                                 <Text fontSize="sm" color="gray.300" >arthurmoreiradev@gmail.com</Text>
                             </Td>
 
-                            <Td>
-                                11 de Abril, 2022
-                            </Td>
+                            {isWideVersion && <Td>11 de Abril, 2022</Td>}
 
                             <Td>
-                                <Button
-                                    as="a"
-                                    size="sm"
-                                    fontSize="sm"
-                                    colorScheme="purple"
-                                    leftIcon={<Icon as={RiPencilLine}  fontSize="20" />}                        
-                                >
-                                    Editar
-                                </Button>
+                                {isWideVersion && (
+                                    <Button
+                                        as="a"
+                                        size="sm"
+                                        fontSize="sm"
+                                        colorScheme="purple"
+                                        leftIcon={<Icon as={RiPencilLine}  fontSize="20" />}                        
+                                    >
+                                        Editar
+                                    </Button>
+                                )}
                             </Td>
                         </Tr>
                     </Tbody>
