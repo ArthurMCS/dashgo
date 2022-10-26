@@ -29,14 +29,13 @@ export default function UserList() {
                 flex="1"
                 borderRadius={8}
                 bg="gray.800"
-                p="8"
+                p={["5", "8"]}
             >
                 <Flex 
                     mb="8" 
-                    justify="space-between" 
-                    align="center"
+                    justify="space-between"
                 >
-                    <Heading size="lg" fontWeight="normal">Usuários</Heading>
+                    <Heading size="lg" fontWeight="normal" >Usuários</Heading>
 
                    <Link href="/users/create" passHref>
                     <Button
