@@ -25,6 +25,7 @@ export default function Header() {
         mt="4"
         px="6"
         align="center"
+        minW={460}
     >
         {
           !isWideVersion && (
