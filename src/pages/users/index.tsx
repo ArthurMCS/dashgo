@@ -2,30 +2,15 @@ import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Th, Thead, Tr, Tbody
 import Link from 'next/link'
 import React from 'react'
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
-import { useQuery } from 'react-query'
 
 import Header from '../../components/Header'
 import Paginations from '../../components/Pagination'
 import Sidebar from '../../components/Sidebar'
+import { useUsers } from '../../services/hooks/useUsers'
 
 export default function UserList() {
 
-  const {data, isLoading, error} = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users');
-    const data = await response.json();
-    const users = data.users.map(user => ({
-        ...user,
-        createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric',
-        }),
-    }))
-
-    return users;
-  }, {staleTime: 1000 * 10});
-
-  console.log(isLoading);
+  const {data, isLoading, isFetching, error} = useUsers()
   
 
   const isWideVersion = useBreakpointValue({
@@ -58,7 +43,10 @@ export default function UserList() {
                     mb="8" 
                     justify="space-between"
                 >
-                    <Heading size="lg" fontWeight="normal" >Usuários</Heading>
+                    <Heading size="lg" fontWeight="normal">
+                        Usuários
+                    { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />}
+                    </Heading>
 
                    <Link href="/users/create" passHref>
                     <Button
